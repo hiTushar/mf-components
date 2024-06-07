@@ -20,12 +20,10 @@ const Slider = () => {
   }
 
   useEffect(() => {
-
     const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
     if (tab) {
       tab.scrollIntoView({ behavior: 'smooth' });
     }
-
   }, [currentTab]);
 
   return (
@@ -38,11 +36,15 @@ const Slider = () => {
       </div>
       <div className='ss-tabs'>
         {data.map((item, index) => (
-          <div key={index} className={`ss-item ${currentTab === index ? 'active' : ''}`}>
+          <div key={index} className={`ss-item ${currentTab === index ? 'active' : ''}`} onClick={() => setCurrentTab(index)}>
             {item}
-            <div className='ss-divider'>
-              <img src={divider} alt='divider' />
-            </div>
+            {/* {
+              index !== data.length - 1 && (
+                <div className='ss-divider'>
+                  <img src={divider} alt='divider' />
+                </div>
+              )
+            } */}
           </div>
         ))}
       </div>
