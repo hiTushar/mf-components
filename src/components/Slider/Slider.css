@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+.ss-slider {
+    width: 600px;
+    position: relative;
+}
+
+.ss-base {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ss-pointer {
+    width: 150px;
+    height: 9px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ss-slant {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+
+    &.left {
+        left: 20px;
+
+        img {
+            transform: rotateY(180deg);
+        }
+    }
+
+    &.right {
+        right: 20px;
+    }
+}
+
+.ss-tabs {
+    position: absolute;
+
+    display: flex;
+    width: 300px;
+    overflow-x: scroll;
+    gap: 20px;
+
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.ss-item {
+    font-family: Rajdhani, sans-serif;
+    color: #D3D4D4;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    &.active {
+        color: #FFF;
+        text-shadow: 0px -9.6px 2.4px rgba(0, 255, 255, 0.02), 0px -6px 2.4px rgba(0, 255, 255, 0.15), 0px -3.6px 2.4px rgba(0, 255, 255, 0.50), 0px -1.2px 1.2px rgba(0, 255, 255, 0.85), 0px 0px 1.2px rgba(0, 255, 255, 0.98), 0px 0px 0px #0FF;
+    }
+
+    .ss-divider {
+        display: inline-block;
+        height: 24px;
+        line-height: 1;
+        img {
+            height: 100%;
+        }
+    }
+}
+
+.ss-double-arrow {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+
+    div {
+        width: 7px;
+
+        img {
+            width: 200%;
+
+            &:nth-child(2) {}
+        }
+    }
+
+    &.left {
+        top: 55%;
+        left: 70px;
+        transform: translateY(-50%) rotateY(180deg);
+    }
+
+    &.right {
+        top: 55%;
+        transform: translateY(-50%);
+        right: 70px;
+    }
+}
+
