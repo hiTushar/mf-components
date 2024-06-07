@@ -48,7 +48,7 @@ const Slider = () => {
           </div>
         ))}
       </div>
-      <div className='ss-double-arrow left' onClick={scrollLeft}>
+      <div className={`ss-double-arrow left ${currentTab === 0 ? 'disabled' : ''}`} onClick={scrollLeft}>
         <div>
           <img src={arrow} alt='arrow' />
         </div>
@@ -56,7 +56,7 @@ const Slider = () => {
           <img src={arrow} alt='arrow' />
         </div>
       </div>
-      <div className='ss-double-arrow right' onClick={scrollRight}>
+      <div className={`ss-double-arrow right ${currentTab === data.length - 1 ? 'disabled' : ''}`} onClick={scrollRight}>
         <div>
           <img src={arrow} alt='arrow' />
         </div>

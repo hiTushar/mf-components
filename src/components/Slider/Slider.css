@@ -133,5 +133,10 @@
         transform: translateY(-50%);
         right: 70px;
     }
+
+    &.disabled {
+        opacity: 0.6;
+        cursor: initial;
+    }
 }
 
