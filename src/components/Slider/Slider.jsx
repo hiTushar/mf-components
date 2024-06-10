@@ -56,6 +56,10 @@ const Slider = () => {
       <div className='ss-base'>
         <img src={base} alt='base' />
       </div>
+      <div className='ss-glow-1'></div>
+      <div className='ss-glow-2'></div>
+      <div className='ss-glow-3'></div>
+      <div className='ss-glow-4'></div>
       <div className='ss-pointer' ref={pointerRef}>
         <img src={pointer} alt='pointer' />
       </div>

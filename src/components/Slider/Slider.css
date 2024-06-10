@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 .ss-slider {
-    width: 600px;
+    max-width: 600px;
+    height: 78px;
     position: relative;
+    overflow: hidden;
 }
 
 .ss-base {
@@ -12,8 +14,57 @@
     }
 }
 
+.ss-glow-1 {
+    outline: 1px solid red;
+    width: 60%;
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    transform: translate(-50%, 150%);
+   
+    border-radius: 398.374px;
+    background: #0FF;
+    filter: blur(52.80000305175781px);
+}
+
+.ss-glow-2 {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    left: 50%;
+    transform: translate(-50%, 200%);
+    
+    border-radius: 521.51px;
+    background: #FFF;
+    mix-blend-mode: soft-light;
+    filter: blur(33.60000228881836px);
+}
+
+.ss-glow-3 {
+    position: absolute;
+    inset: 0;
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, 90%);
+    
+    border-radius: 271.572px;
+    background: radial-gradient(50% 50% at 50% 50%, #0FF 0%, rgba(0, 255, 255, 0.00) 100%);
+    filter: blur(1.8000000715255737px);
+}
+
+.ss-glow-4 {
+    position: absolute;
+    inset: 0;
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, 99.9%);
+
+    border-radius: 468.01px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 52.37%, rgba(255, 255, 255, 0.00) 99.36%);
+}
+
 .ss-pointer {
-    width: 150px;
+    max-width: 150px;
     height: 9px;
     position: absolute;
     top: 2px;
@@ -45,18 +96,16 @@
 }
 
 .ss-tabs {
-    position: absolute;
-
-    display: flex;
     width: 300px;
-    overflow-x: scroll;
-    gap: 20px;
-
+    position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    
+    display: flex;
+    overflow-x: scroll;
+    gap: 20px;
+
     &::-webkit-scrollbar {
         display: none;
     }
