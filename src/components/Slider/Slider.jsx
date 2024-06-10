@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Slider.css';
-import { arrow, base, divider, doubleArrow, pointer, slant } from '../../assets/asset';
+import { arrow, base, divider, pointer, slant } from '../../assets/asset';
 
 const Slider = () => {
   const data = ['tenant 1', 'TENANT 2', 'TENANT 3', 'TENANT 4', 'TENANT 5', 'TENANT 6', 'TENANT 7', 'TENANT 8', 'TENANT 9', 'TENANT 10'];
@@ -86,20 +86,12 @@ const Slider = () => {
         ))}
       </div>
       <div className={`ss-double-arrow left ${currentTab === 0 ? 'disabled' : ''}`} onClick={scrollLeft}>
-        <div>
-          <img src={arrow} alt='arrow' />
-        </div>
-        <div>
-          <img src={arrow} alt='arrow' />
-        </div>
+        <img className={'ss-arrow'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow'} src={arrow} alt='arrow' />
       </div>
       <div className={`ss-double-arrow right ${currentTab === data.length - 1 ? 'disabled' : ''}`} onClick={scrollRight}>
-        <div>
-          <img src={arrow} alt='arrow' />
-        </div>
-        <div>
-          <img src={arrow} alt='arrow' />
-        </div>
+        <img className={'ss-arrow'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow'} src={arrow} alt='arrow' />
       </div>
       <div className='ss-slant left'>
         <img src={slant} alt='slant' />
