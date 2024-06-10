@@ -3,38 +3,45 @@ import './Slider.css';
 import { arrow, base, divider, doubleArrow, pointer, slant } from '../../assets/asset';
 
 const Slider = () => {
-  const data = ['asdfsfdfsdfsdfs 1', 'TENANT 2', 'TENANT 3', 'TENANT 4', 'TENANT 5', 'TENANT 6', 'TENANT 7', 'TENANT 8', 'TENANT 9', 'TENANT 10'];
+  const data = ['tenant 1', 'TENANT 2', 'TENANT 3', 'TENANT 4', 'TENANT 5', 'TENANT 6', 'TENANT 7', 'TENANT 8', 'TENANT 9', 'TENANT 10'];
+  const lastTabIndex = data.length - 1;
 
-  const [currentTab, setCurrentTab] = useState(9);
+  const [currentTab, setCurrentTab] = useState(0);
   const pointerRef = useRef(null);
   const tabsRef = useRef(null);
 
   useEffect(() => {
-    let pointerLeft = pointerRef.current.getBoundingClientRect().left;
-    let pointerWidth = pointerRef.current.getBoundingClientRect().width;
-    let pointerCenter = pointerLeft + pointerWidth / 2;
+    let tabsLeftOffset = tabsRef.current.getBoundingClientRect().left;
 
-    let tabsFirstChildLeft = tabsRef.current.firstChild.getBoundingClientRect().left;
-    let tabsFirstChildWidth = tabsRef.current.firstChild.getBoundingClientRect().width - (50);
-    let tabsFirstChildCenter = tabsFirstChildLeft + tabsFirstChildWidth / 2;
+    let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
+    let pointerCenterOffset = pointerLeft + pointerWidth / 2;
 
-    let tabsFirstChild = tabsRef.current.firstChild;
-    tabsFirstChild.style.marginLeft = `${pointerCenter - tabsFirstChildCenter}px`;
+    let pointerTabOffset = pointerCenterOffset - tabsLeftOffset;
 
-    let tabsRight = tabsRef.current.getBoundingClientRect().right;
-    let tabsLastChildWidth = tabsRef.current.lastChild.getBoundingClientRect().width - (50);
-    let tabsLastChildCenter = tabsRight + tabsLastChildWidth / 2;
+    let tabsFirstChild = tabsRef.current.children[0];
+    tabsFirstChild.style.marginLeft = `${pointerTabOffset}px`;
 
-    let tabsLastChild = tabsRef.current.lastChild;
-    tabsLastChild.style.marginRight = `${tabsLastChildCenter - pointerCenter}px`;
+    let tabsLastChild = tabsRef.current.children[lastTabIndex];
+    tabsLastChild.style.marginRight = `${pointerTabOffset}px`;
   }, []);
+
+  useEffect(() => {
+    const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
+    if (tab) {
+      let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
+      let pointerCenterOffset = pointerLeft + pointerWidth / 2;
+
+      let tabsChild = tabsRef.current.children[currentTab];
+      let { left: tabsChildLeft, width: tabsChildWidth } = tabsChild.getBoundingClientRect();
+      let tabsChildCenter = tabsChildLeft + (tabsChildWidth - (currentTab === lastTabIndex ? 0 : 37)) / 2;
+
+      tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenterOffset, behavior: 'smooth' });
+    }
+  }, [currentTab]);
 
   const scrollLeft = () => {
     if (currentTab !== 0) {
       setCurrentTab(currentTab - 1);
-    }
-    else {
-
     }
   }
 
@@ -43,25 +50,6 @@ const Slider = () => {
       setCurrentTab(currentTab + 1);
     }
   }
-
-  useEffect(() => {
-    const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
-    if (tab) {
-      // tab.scrollIntoView({ behavior: 'smooth' });
-      console.log(tabsRef.current.children);
-
-      let pointerLeft = pointerRef.current.getBoundingClientRect().left;
-      let pointerWidth = pointerRef.current.getBoundingClientRect().width;
-      let pointerCenter = pointerLeft + pointerWidth / 2;
-
-      let tabsChild = tabsRef.current.children[currentTab];
-      let tabsChildLeft = tabsChild.getBoundingClientRect().left;
-      let tabsChildWidth = tabsChild.getBoundingClientRect().width - 50;
-      let tabsChildCenter = tabsChildLeft + tabsChildWidth / 2;
-
-      tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenter, behavior: 'smooth' });
-    }
-  }, [currentTab]);
 
   return (
     <div className='ss-slider'>
