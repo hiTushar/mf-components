@@ -46,9 +46,17 @@ const Slider = () => {
   }
 
   const scrollRight = () => {
-    if (currentTab !== data.length - 1) {
+    if (currentTab !== lastTabIndex) {
       setCurrentTab(currentTab + 1);
     }
+  }
+
+  const wheelScroll = e => {
+    let scrollVal = parseInt(e.deltaY / 100);
+
+    if (scrollVal > 0) 
+      scrollRight();
+    else scrollLeft();
   }
 
   return (
@@ -63,7 +71,7 @@ const Slider = () => {
       <div className='ss-pointer' ref={pointerRef}>
         <img src={pointer} alt='pointer' />
       </div>
-      <div className='ss-tabs' ref={tabsRef}>
+      <div className='ss-tabs' ref={tabsRef} onWheel={wheelScroll}>
         {data.map((item, index) => (
           <div key={index} className={`ss-item ${currentTab === index ? 'active' : ''}`} onClick={() => setCurrentTab(index)}>
             {item}
