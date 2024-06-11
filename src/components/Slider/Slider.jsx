@@ -52,7 +52,7 @@ const Slider = () => {
   }
 
   const wheelScroll = e => {
-    let scrollVal = parseInt(e.deltaY / 100);
+    let scrollVal = parseInt(e.deltaY / 50);
 
     if (scrollVal > 0) 
       scrollRight();
@@ -86,18 +86,18 @@ const Slider = () => {
         ))}
       </div>
       <div className={`ss-double-arrow left ${currentTab === 0 ? 'disabled' : ''}`} onClick={scrollLeft}>
-        <img className={'ss-arrow'} src={arrow} alt='arrow' />
-        <img className={'ss-arrow'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow-img'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow-img'} src={arrow} alt='arrow' />
       </div>
       <div className={`ss-double-arrow right ${currentTab === data.length - 1 ? 'disabled' : ''}`} onClick={scrollRight}>
-        <img className={'ss-arrow'} src={arrow} alt='arrow' />
-        <img className={'ss-arrow'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow-img'} src={arrow} alt='arrow' />
+        <img className={'ss-arrow-img'} src={arrow} alt='arrow' />
       </div>
       <div className='ss-slant left'>
-        <img src={slant} alt='slant' />
+        <img className='ss-slant-img' src={slant} alt='slant' />
       </div>
       <div className='ss-slant right'>
-        <img src={slant} alt='slant' />
+        <img className='ss-slant-img' src={slant} alt='slant' />
       </div>
     </div>
   )
