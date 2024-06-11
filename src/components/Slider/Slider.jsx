@@ -6,13 +6,11 @@ const Slider = () => {
   const data = ['tenant 1', 'TENANT 2', 'TENANT 3', 'TENANT 4', 'TENANT 5', 'TENANT 6', 'TENANT 7', 'TENANT 8', 'TENANT 9', 'TENANT 10'];
   const lastTabIndex = data.length - 1;
 
-  const [currentTab, setCurrentTab] = useState(0);
+  const [currentTab, setCurrentTab] = useState(null);
   const pointerRef = useRef(null);
   const tabsRef = useRef(null);
 
-  useEffect(() => {
-    console.log('give margin');
-    debugger;
+  const addMargins = () => {
     let tabsLeftOffset = tabsRef.current.getBoundingClientRect().left;
 
     let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
@@ -27,13 +25,12 @@ const Slider = () => {
 
     let tabsLastChild = tabsRef.current.children[lastTabIndex];
     tabsLastChild.style.marginRight = `${pointerTabOffset}px`;
-  }, []);
+    setCurrentTab(0);
+  }
 
   useEffect(() => {
-    console.log('scrollBy');
-    debugger;
     const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
-    if (tab) {
+    if (tab && currentTab !== null) {
       let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
       let pointerCenterOffset = pointerLeft + pointerWidth / 2;
 
@@ -66,7 +63,7 @@ const Slider = () => {
   }
 
   return (
-    <div className='ss-slider'>
+    <div className='ss-slider' onLoad={addMargins}>
       <div className='ss-base'>
         <img src={base} alt='base' />
       </div>
