@@ -36,20 +36,19 @@ const Slider = () => {
       let tabsChildCenter = tabsChildLeft + (tabsChildWidth - (currentTab === lastTabIndex ? 0 : 37)) / 2;
 
       tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenterOffset, behavior: 'smooth' });
+      navigator.vibrate(100);
     }
   }, [currentTab]);
 
   const scrollLeft = () => {
     if (currentTab !== 0) {
       setCurrentTab(currentTab - 1);
-      navigator.vibrate(100);
     }
   }
 
   const scrollRight = () => {
     if (currentTab !== lastTabIndex) {
       setCurrentTab(currentTab + 1);
-      navigator.vibrate(100);
     }
   }
 
