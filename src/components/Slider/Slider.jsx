@@ -42,12 +42,14 @@ const Slider = () => {
   const scrollLeft = () => {
     if (currentTab !== 0) {
       setCurrentTab(currentTab - 1);
+      navigator.vibrate(100);
     }
   }
 
   const scrollRight = () => {
     if (currentTab !== lastTabIndex) {
       setCurrentTab(currentTab + 1);
+      navigator.vibrate(100);
     }
   }
 
