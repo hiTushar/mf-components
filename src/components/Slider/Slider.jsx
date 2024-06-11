@@ -18,6 +18,8 @@ const Slider = () => {
 
     let pointerTabOffset = pointerCenterOffset - tabsLeftOffset;
 
+    console.log({ pointerCenterOffset, tabsLeftOffset });
+
     let tabsFirstChild = tabsRef.current.children[0];
     tabsFirstChild.style.marginLeft = `${pointerTabOffset}px`;
 
