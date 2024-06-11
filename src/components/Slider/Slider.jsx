@@ -11,6 +11,8 @@ const Slider = () => {
   const tabsRef = useRef(null);
 
   useEffect(() => {
+    console.log('give margin');
+    debugger;
     let tabsLeftOffset = tabsRef.current.getBoundingClientRect().left;
 
     let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
@@ -28,6 +30,8 @@ const Slider = () => {
   }, []);
 
   useEffect(() => {
+    console.log('scrollBy');
+    debugger;
     const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
     if (tab) {
       let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
