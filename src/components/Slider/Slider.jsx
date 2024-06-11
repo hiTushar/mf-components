@@ -18,8 +18,6 @@ const Slider = () => {
 
     let pointerTabOffset = pointerCenterOffset - tabsLeftOffset;
 
-    console.log({ pointerCenterOffset, tabsLeftOffset });
-
     let tabsFirstChild = tabsRef.current.children[0];
     tabsFirstChild.style.marginLeft = `${pointerTabOffset}px`;
 
@@ -29,8 +27,7 @@ const Slider = () => {
   }
 
   useEffect(() => {
-    const tab = document.querySelector(`.ss-item:nth-child(${currentTab + 1})`);
-    if (tab && currentTab !== null) {
+    if (currentTab !== null) {
       let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
       let pointerCenterOffset = pointerLeft + pointerWidth / 2;
 
