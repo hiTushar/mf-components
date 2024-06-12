@@ -1,14 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Slider.css';
-import { arrow, base, divider, pointer, slant } from '../../assets/asset';
+import { arrow, base, pointer, slant } from '../../assets/asset';
 
-const Slider = () => {
-  const data = ['tenant 1', 'TENANT 2', 'TENANT 3', 'TENANT 4', 'TENANT 5', 'TENANT 6', 'TENANT 7', 'TENANT 8', 'TENANT 9', 'TENANT 10'];
+const Slider = (props) => {
+  const { data } = props;
   const lastTabIndex = data.length - 1;
 
   const [currentTab, setCurrentTab] = useState(null);
   const pointerRef = useRef(null);
   const tabsRef = useRef(null);
+
+  useEffect(() => {
+    if (currentTab !== null) {
+      let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
+      let pointerCenterOffset = pointerLeft + pointerWidth / 2;
+
+      let tabsChild = tabsRef.current.children[currentTab];
+      let { left: tabsChildLeft, width: tabsChildWidth } = tabsChild.getBoundingClientRect();
+      let tabsChildCenter = tabsChildLeft + (tabsChildWidth - (currentTab === lastTabIndex ? 0 : 37)) / 2;
+
+      tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenterOffset, behavior: 'smooth' });
+      navigator.vibrate(100);
+    }
+  }, [currentTab]);
 
   const addMargins = () => {
     let tabsLeftOffset = tabsRef.current.getBoundingClientRect().left;
@@ -25,20 +39,6 @@ const Slider = () => {
     tabsLastChild.style.marginRight = `${pointerTabOffset}px`;
     setCurrentTab(0);
   }
-
-  useEffect(() => {
-    if (currentTab !== null) {
-      let { left: pointerLeft, width: pointerWidth } = pointerRef.current.getBoundingClientRect();
-      let pointerCenterOffset = pointerLeft + pointerWidth / 2;
-
-      let tabsChild = tabsRef.current.children[currentTab];
-      let { left: tabsChildLeft, width: tabsChildWidth } = tabsChild.getBoundingClientRect();
-      let tabsChildCenter = tabsChildLeft + (tabsChildWidth - (currentTab === lastTabIndex ? 0 : 37)) / 2;
-
-      tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenterOffset, behavior: 'smooth' });
-      navigator.vibrate(100);
-    }
-  }, [currentTab]);
 
   const scrollLeft = () => {
     if (currentTab !== 0) {
@@ -74,8 +74,8 @@ const Slider = () => {
       </div>
       <div className='ss-tabs' ref={tabsRef} onWheel={wheelScroll}>
         {data.map((item, index) => (
-          <div key={index} className={`ss-item ${currentTab === index ? 'active' : ''}`} onClick={() => setCurrentTab(index)}>
-            {item}
+          <div key={item.id} className={`ss-item ${currentTab === index ? 'active' : ''}`} onClick={() => setCurrentTab(index)}>
+            {item.name}
             {/* {
               index !== data.length - 1 && (
                 <div className='ss-divider'>

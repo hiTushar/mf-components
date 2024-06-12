@@ -148,6 +148,10 @@
     align-items: center;
     gap: 20px;
 
+    transition: font-size 0.2s ease-in-out,
+                color 0.2s ease-in-out,
+                text-shadow 0.2s ease-in-out;
+
     &.active {
         font-size: clamp(0.9rem, 1vw + 0.5rem, 1.5rem);
         color: #FFF;
