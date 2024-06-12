@@ -20,7 +20,9 @@ const Slider = (props) => {
       let tabsChildCenter = tabsChildLeft + (tabsChildWidth - (currentTab === lastTabIndex ? 0 : 37)) / 2;
 
       tabsRef.current.scrollBy({ top: 0, left: tabsChildCenter - pointerCenterOffset, behavior: 'smooth' });
-      navigator.vibrate(100);
+      
+      const canVibrate = window.navigator.vibrate;
+      if (canVibrate) window.navigator.vibrate(100);
     }
   }, [currentTab]);
 
