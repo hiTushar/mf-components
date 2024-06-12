@@ -121,6 +121,7 @@
     overflow-x: scroll;
     gap: 20px;
 
+    scrollbar-width: none;
     &::-webkit-scrollbar {
         display: none;
     }
